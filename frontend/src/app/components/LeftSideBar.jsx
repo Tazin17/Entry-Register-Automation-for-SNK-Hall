@@ -59,12 +59,11 @@ const LeftSideBar = () => {
                 {/* footer section  */}
                 <div className='mb-16 bottom-0'>
                     <Separator className='my-4'/>
-                    <div className='flex items-center space-x-2 mb-4 cursor-pointer'>
-                        <Avatar className='h-10 w-10'>
-                           <AvatarImage/>
-                            <AvatarFallback>W</AvatarFallback>
-                        </Avatar>
-                        <span className='font-semibold'>Username</span>
+                    <div className='flex flex-col items-center space-y-2 mb-4 cursor-pointer'>
+                        
+                        <span className='text-sm'>Shamshen Nahar Khan Hall,CUET</span>
+                        <span className='text-sm'> Chattogram - 4349</span>
+                        
                     </div>
                     
                 </div>
