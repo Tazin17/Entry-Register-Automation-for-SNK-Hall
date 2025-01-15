@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button';
-import { Home, MessageCircle, User, Users, Video, Bell}  from 'lucide-react';
+import { User, Users, BookUser, Send}  from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const LeftSideBar = () => {
@@ -13,47 +13,37 @@ const LeftSideBar = () => {
                     <div className='flex items-center space-x-2 cursor-pointer'>
                         <Avatar className='h-10 w-10'>
                            <AvatarImage/>
-                            <AvatarFallback>W</AvatarFallback>
+                            <AvatarFallback>P</AvatarFallback>
                         </Avatar>
-                        <span className='font-semibold'>Username</span>
+                        <span className='font-semibold'>Provost</span>
                     </div>
                     
                     <Button
                     variant = "ghost"
                     className="w-full justify-start"
                     >
-                        <Home className='mr-4'/> Home
+                        <BookUser className='mr-4'/> User Details
                     </Button>
                     <Button
                     variant = "ghost"
                     className="w-full justify-start"
                     >
-                        <Users className='mr-4'/> Friends
+                        <Users className='mr-4'/> Late Students
                     </Button>
                     <Button
                     variant = "ghost"
                     className="w-full justify-start"
                     >
-                        <Video className='mr-4'/> Video
+                        <Send className='mr-4'/> Notice Submission
                     </Button>
                     <Button
                     variant = "ghost"
                     className="w-full justify-start"
                     >
-                        <User className='mr-4'/> Profile
+                        <User className='mr-4'/> Guest Entry
                     </Button>
-                    <Button
-                    variant = "ghost"
-                    className="w-full justify-start"
-                    >
-                        <MessageCircle className='mr-4'/> Messages
-                    </Button>
-                    <Button
-                    variant = "ghost"
-                    className="w-full justify-start"
-                    >
-                        <Bell className='mr-4'/> Notifications
-                    </Button>
+                    
+                    
                 </nav>
                 
                 {/* footer section  */}

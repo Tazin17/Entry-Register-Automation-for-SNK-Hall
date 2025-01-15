@@ -1,5 +1,5 @@
 "use client"
-import { Home, LogOut, MessageCircle, Moon, Video, Sun, Users, Menu, Bell} from 'lucide-react';
+import { Home, LogOut, MessageCircle, Moon, Video, Sun, Users, Menu, Bell, BookUser} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu,DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem  } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
@@ -20,7 +20,7 @@ const Header = () => {
                 <div>
                     <Button
                         variant = "ghost"
-                        className="w-full h-70 justify-start hover:bg-transperant text-xl"
+                        className="w-full h-70 justify-start hover:bg-transperant text-xl font-bold-italic"
                         >
                          SNK Hall Entry
                     </Button>
@@ -28,8 +28,8 @@ const Header = () => {
                 <nav className='hidden md:flex justify-around w-[40%] max-w-md'>
                     {[
                         {icon: Home, path: "/", name: 'home'},
-                        {icon: Video, path: "/video-feed", name: 'video'},
-                        {icon: Users, path: "/friends-list", name: 'friends'}
+                        {icon: BookUser, path: "/user-details", name: 'details'},
+                        {icon: Users, path: "/late-students", name: 'late_students'}
                     ].map(({icon: Icon, path, name}) =>(
                         <Button 
                             key = {name}
@@ -58,7 +58,7 @@ const Header = () => {
                             <Button variant = "ghost" className = 'relative h-8 w-8 rounded-full'>
                                 <Avatar className="h-8 w-8 mr-2">
                                     <AvatarImage />
-                                    <AvatarFallback>W</AvatarFallback>
+                                    <AvatarFallback>P</AvatarFallback>
                                 </Avatar>
                             </Button>
                         </DropdownMenuTrigger>
@@ -68,7 +68,7 @@ const Header = () => {
                                     <div className='flex items-center'>
                                         <Avatar className='h-8 w-8 mr-2'>
                                             <AvatarImage />
-                                            <AvatarFallback className='dark:bg-gray-400'>W</AvatarFallback>
+                                            <AvatarFallback className='dark:bg-gray-400'>P</AvatarFallback>
                                         </Avatar>
                                         <div className=''>
                                             <p className='text-sm font-medium leading-none'>Walisa Alam</p>
