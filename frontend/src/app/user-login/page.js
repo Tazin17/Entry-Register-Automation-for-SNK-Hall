@@ -105,7 +105,7 @@ const page = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Card className="w-full max-w-md dark:text-white mt-20">
+        <Card className="w-full max-w-md dark:text-white mt-7">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-center">
               <span>SNK Hall Entry</span>
@@ -184,16 +184,17 @@ const page = () => {
               <TabsContent value="signup" className="mt-500">
                 <form>
                   <div className="grid grid-cols-2 gap-6">
+                    {/* <div className="space-y-4"> */}
                     {/* Column 1 */}
                     <div className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="signupName">Username</Label>
+                        <Label htmlFor="signupName">Full Name</Label>
                         <Input
                           id="signupName"
                           name="username"
                           type="text"
                           {...registerSignUp("username")}
-                          placeholder="Enter your username"
+                          placeholder="Enter your Full Name"
                           className="col-span-3 dark:border-gray-400"
                         />
                         {errorsSignUp.username && (
@@ -202,7 +203,40 @@ const page = () => {
                           </p>
                         )}
                       </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="studentid">Student ID</Label>
+                        <Input
+                          id="studentid"
+                          name="std_id"
+                          type="text" // Use text for alphanumeric or IDs with leading zeros
+                          {...registerLogin("std_id")}
+                          placeholder="Enter your Student ID"
+                          className="col-span-3 dark:border-gray-400"
+                        />
+                        {errorsLogin.std_id && (
+                          <p className="text-red-500">
+                            {errorsLogin.std_id.message}
+                          </p>
+                        )}
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="contactno">Contact No.</Label>
+                        <Input
+                          id="contactno"
+                          name="contact_no"
+                          type="tel" // Use tel for phone numbers
+                          placeholder="Enter your Contact No."
+                          className="col-span-3 dark:border-gray-400 "
+                          {...registerLogin("contact_no")} // Update the field name accordingly
+                        />
+                        {errorsLogin.contact_no && (
+                          <p className="text-red-500">
+                            {errorsLogin.contact_no.message}
+                          </p>
+                        )}
+                      </div>
 
+                      {/* 
                       <div className="space-y-2">
                         <Label htmlFor="signupGender">Gender</Label>
                         <select
@@ -221,9 +255,9 @@ const page = () => {
                             {errorsSignUp.gender.message}
                           </p>
                         )}
-                      </div>
+                      </div> */}
 
-                      <div className="space-y-2">
+                      {/* <div className="space-y-2">
                         <Label htmlFor="signupEmail">Email</Label>
                         <Input
                           id="signupEmail"
@@ -238,12 +272,45 @@ const page = () => {
                             {errorsSignUp.email.message}
                           </p>
                         )}
-                      </div>
+                      </div> */}
                     </div>
 
                     {/* Column 2 */}
+
                     <div className="space-y-4">
                       <div className="space-y-2">
+                        <Label htmlFor="loginPassword">Password</Label>
+                        <Input
+                          id="loginPassword"
+                          name="password"
+                          type="password"
+                          {...registerLogin("password")}
+                          placeholder="Enter your Password"
+                          className="col-span-3 dark:border-gray-400"
+                        />
+                        {errorsLogin.password && (
+                          <p className="text-red-500">
+                            {errorsLogin.password.message}
+                          </p>
+                        )}
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="loginPassword">Confirm Password</Label>
+                        <Input
+                          id="CloginPassword"
+                          name="Cpassword"
+                          type="password"
+                          {...registerLogin("Cpassword")}
+                          placeholder="Re-Enter your Password"
+                          className="col-span-3 dark:border-gray-400"
+                        />
+                        {errorsLogin.Cpassword && (
+                          <p className="text-red-500">
+                            {errorsLogin.Cpassword.message}
+                          </p>
+                        )}
+                      </div>
+                      {/* <div className="space-y-2">
                         <Label htmlFor="signupPassword">Password</Label>
                         <Input
                           id="signupPassword"
@@ -258,9 +325,9 @@ const page = () => {
                             {errorsSignUp.password.message}
                           </p>
                         )}
-                      </div>
+                      </div> */}
 
-                      <div className="space-y-2">
+                      {/* <div className="space-y-2">
                         <Label htmlFor="signupStudentId">Student ID</Label>
                         <Input
                           id="signupStudentId"
@@ -275,8 +342,8 @@ const page = () => {
                             {errorsSignUp.studentId.message}
                           </p>
                         )}
-                      </div>
-
+                      </div> */}
+                      {/* 
                       <div className="space-y-2">
                         <Label htmlFor="signupDepartment">Department</Label>
                         <Select
@@ -306,7 +373,7 @@ const page = () => {
                             {errorsSignUp.department.message}
                           </p>
                         )}
-                      </div>
+                      </div> */}
 
                       {/* <div className="space-y-2">
           <Label htmlFor="signupDepartment">Department</Label>
@@ -344,6 +411,32 @@ const page = () => {
                     <RadioGroup
                       className="flex justify-between"
                       {...registerSignUp("status")}
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="current" id="current" />
+                        <Label htmlFor="current">Current Student</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem
+                          value="hallAuthority"
+                          id="hallAuthority"
+                        />
+                        <Label htmlFor="hallAuthority">Hall Authority</Label>
+                      </div>
+                    </RadioGroup>
+                    {errorsSignUp.status && (
+                      <p className="text-red-500">
+                        {errorsSignUp.status.message}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* 
+                  <div className="space-y-4 mt-6">
+                    <Label>Status</Label>
+                    <RadioGroup
+                      className="flex justify-between"
+                      {...registerSignUp("status")}
                       onValueChange={(value) => setIsAlumni(value === "alumni")}
                     >
                       <div className="flex items-center space-x-2">
@@ -352,7 +445,7 @@ const page = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="alumni" id="alumni" />
-                        <Label htmlFor="alumni">CUET Alumni</Label>
+                        <Label htmlFor="alumni">Hall Authority</Label>
                       </div>
                     </RadioGroup>
                     {errorsSignUp.isAlumni && (
@@ -404,7 +497,7 @@ const page = () => {
                         </div>
                       </DialogContent>
                     </Dialog>
-                  )}
+                  )} */}
 
                   <Button className="w-full mt-6" type="submit">
                     <LogIn className="mr-2 w-4 h-4" /> Sign Up
