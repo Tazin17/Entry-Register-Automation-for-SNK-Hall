@@ -31,9 +31,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
+// import { useRouter } from "next/navigation";
 const page = () => {
   const router = useRouter();
+  // const router = useRouter();
+  const handleNavigation = (path, item) => {
+    router.push(path);
+  };
 
   // Validation schema for Sign-Up
   const registerSchema = yup.object().shape({
@@ -125,39 +129,22 @@ const page = () => {
               <TabsContent value="login">
                 <form>
                   <div className="space-y-4">
-                    {/* <div className="space-y-2">
-                      <Label htmlFor="loginEmail">Student ID</Label>
+                    <div className="space-y-2">
+                      <Label htmlFor="loginEmail">Email</Label>
                       <Input
-                        id="studentid"
-                        name="std_id"
-                        type="number"
-                        {...registerLogin("number")}
-                        placeholder="Enter your Student ID"
+                        id="loginEmail"
+                        name="email"
+                        type="email"
+                        {...registerLogin("email")}
+                        placeholder="Enter your email"
                         className="col-span-3 dark:border-gray-400"
                       />
-                      {errorsLogin.number && (
+                      {errorsLogin.email && (
                         <p className="text-red-500">
                           {errorsLogin.email.message}
                         </p>
                       )}
-                    </div> */}
-                    <div className="space-y-2">
-                      <Label htmlFor="studentid">Student ID</Label>
-                      <Input
-                        id="studentid"
-                        name="std_id"
-                        type="text" // Use text for alphanumeric or IDs with leading zeros
-                        {...registerLogin("std_id")}
-                        placeholder="Enter your Student ID"
-                        className="col-span-3 dark:border-gray-400"
-                      />
-                      {errorsLogin.std_id && (
-                        <p className="text-red-500">
-                          {errorsLogin.std_id.message}
-                        </p>
-                      )}
                     </div>
-
                     <div className="space-y-2">
                       <Label htmlFor="loginPassword">Password</Label>
                       <Input
@@ -174,7 +161,11 @@ const page = () => {
                         </p>
                       )}
                     </div>
-                    <Button className="w-full" type="submit">
+                    <Button
+                      className="w-full"
+                      type="submit"
+                    //   onClick={() => handleNavigation("/components")}
+                    >
                       <LogIn className="mr-2 w-4 h-4" /> Log in
                     </Button>
                   </div>
@@ -235,49 +226,27 @@ const page = () => {
                           </p>
                         )}
                       </div>
-
-                      {/* 
-                      <div className="space-y-2">
-                        <Label htmlFor="signupGender">Gender</Label>
-                        <select
-                          id="signupGender"
-                          name="gender"
-                          {...registerSignUp("gender")}
-                          className="w-full border dark:border-gray-400 rounded-md px-3 py-2"
-                        >
-                          <option value="">Select your gender</option>
-                          <option value="male">Male</option>
-                          <option value="female">Female</option>
-                          <option value="other">Other</option>
-                        </select>
-                        {errorsSignUp.gender && (
-                          <p className="text-red-500">
-                            {errorsSignUp.gender.message}
-                          </p>
-                        )}
-                      </div> */}
-
-                      {/* <div className="space-y-2">
-                        <Label htmlFor="signupEmail">Email</Label>
-                        <Input
-                          id="signupEmail"
-                          name="email"
-                          type="email"
-                          {...registerSignUp("email")}
-                          placeholder="Enter your email"
-                          className="col-span-3 dark:border-gray-400"
-                        />
-                        {errorsSignUp.email && (
-                          <p className="text-red-500">
-                            {errorsSignUp.email.message}
-                          </p>
-                        )}
-                      </div> */}
                     </div>
 
                     {/* Column 2 */}
-
                     <div className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="loginEmail">Email</Label>
+                        <Input
+                          id="loginEmail"
+                          name="email"
+                          type="email"
+                          {...registerLogin("email")}
+                          placeholder="Enter your email"
+                          className="col-span-3 dark:border-gray-400"
+                        />
+                        {errorsLogin.email && (
+                          <p className="text-red-500">
+                            {errorsLogin.email.message}
+                          </p>
+                        )}
+                      </div>
+
                       <div className="space-y-2">
                         <Label htmlFor="loginPassword">Password</Label>
                         <Input
@@ -310,194 +279,8 @@ const page = () => {
                           </p>
                         )}
                       </div>
-                      {/* <div className="space-y-2">
-                        <Label htmlFor="signupPassword">Password</Label>
-                        <Input
-                          id="signupPassword"
-                          name="password"
-                          type="password"
-                          {...registerSignUp("password")}
-                          placeholder="Enter your Password"
-                          className="col-span-3 dark:border-gray-400"
-                        />
-                        {errorsSignUp.password && (
-                          <p className="text-red-500">
-                            {errorsSignUp.password.message}
-                          </p>
-                        )}
-                      </div> */}
-
-                      {/* <div className="space-y-2">
-                        <Label htmlFor="signupStudentId">Student ID</Label>
-                        <Input
-                          id="signupStudentId"
-                          name="studentId"
-                          type="text"
-                          {...registerSignUp("studentId")}
-                          placeholder="Enter your Student ID"
-                          className="col-span-3 dark:border-gray-400"
-                        />
-                        {errorsSignUp.studentId && (
-                          <p className="text-red-500">
-                            {errorsSignUp.studentId.message}
-                          </p>
-                        )}
-                      </div> */}
-                      {/* 
-                      <div className="space-y-2">
-                        <Label htmlFor="signupDepartment">Department</Label>
-                        <Select
-                          id="signupDepartment"
-                          {...registerSignUp("department")}
-                          className="w-full"
-                        >
-                          <SelectTrigger placeholder="Select Department">
-                            <SelectContent>
-                              <SelectItem value="CE">CE</SelectItem>
-                              <SelectItem value="EEE">EEE</SelectItem>
-                              <SelectItem value="ME">ME</SelectItem>
-                              <SelectItem value="CSE">CSE</SelectItem>
-                              <SelectItem value="URP">URP</SelectItem>
-                              <SelectItem value="ARCHI">ARCHI</SelectItem>
-                              <SelectItem value="PME">PME</SelectItem>
-                              <SelectItem value="ETE">ETE</SelectItem>
-                              <SelectItem value="MIE">MIE</SelectItem>
-                              <SelectItem value="WRE">WRE</SelectItem>
-                              <SelectItem value="BME">BME</SelectItem>
-                              <SelectItem value="MSE">MSE</SelectItem>
-                            </SelectContent>
-                          </SelectTrigger>
-                        </Select>
-                        {errorsSignUp.department && (
-                          <p className="text-red-500">
-                            {errorsSignUp.department.message}
-                          </p>
-                        )}
-                      </div> */}
-
-                      {/* <div className="space-y-2">
-          <Label htmlFor="signupDepartment">Department</Label>
-          <Select
-            id="signupDepartment"
-            {...registerSignUp("department")}
-            className="w-full"
-          >
-            <SelectTrigger placeholder="Select Department">
-              <SelectContent>
-                <SelectItem value="CSE">CE</SelectItem>
-                <SelectItem value="EEE">EEE</SelectItem>
-                <SelectItem value="ME">ME</SelectItem>
-                <SelectItem value="CE">CSE</SelectItem>
-                <SelectItem value="CE">URP</SelectItem>
-                <SelectItem value="CE">ARCHI</SelectItem>
-                <SelectItem value="CE">PME</SelectItem>
-                <SelectItem value="CE">ETE</SelectItem>
-                <SelectItem value="CE">MIE</SelectItem>
-                <SelectItem value="CE">WRE</SelectItem>
-                <SelectItem value="CE">BME</SelectItem>
-                <SelectItem value="CE">MSE</SelectItem>
-              </SelectContent>
-            </SelectTrigger>
-          </Select>
-          {errorsSignUp.department && (
-            <p className="text-red-500">{errorsSignUp.department.message}</p>
-          )}
-        </div> */}
                     </div>
                   </div>
-
-                  <div className="space-y-4 mt-6">
-                    <Label>Status</Label>
-                    <RadioGroup
-                      className="flex justify-between"
-                      {...registerSignUp("status")}
-                    >
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="current" id="current" />
-                        <Label htmlFor="current">Current Student</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem
-                          value="hallAuthority"
-                          id="hallAuthority"
-                        />
-                        <Label htmlFor="hallAuthority">Hall Authority</Label>
-                      </div>
-                    </RadioGroup>
-                    {errorsSignUp.status && (
-                      <p className="text-red-500">
-                        {errorsSignUp.status.message}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* 
-                  <div className="space-y-4 mt-6">
-                    <Label>Status</Label>
-                    <RadioGroup
-                      className="flex justify-between"
-                      {...registerSignUp("status")}
-                      onValueChange={(value) => setIsAlumni(value === "alumni")}
-                    >
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="current" id="current" />
-                        <Label htmlFor="current">Current Student</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="alumni" id="alumni" />
-                        <Label htmlFor="alumni">Hall Authority</Label>
-                      </div>
-                    </RadioGroup>
-                    {errorsSignUp.isAlumni && (
-                      <p className="text-red-500">
-                        {errorsSignUp.isAlumni.message}
-                      </p>
-                    )}
-                  </div>
-
-                  {isAlumni && (
-                    <Dialog open={isAlumni} onOpenChange={setIsAlumni}>
-                      <DialogContent>
-                        <DialogHeader>
-                          <DialogTitle>Alumni Details</DialogTitle>
-                        </DialogHeader>
-                        <div className="space-y-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="batch">Batch</Label>
-                            <Input
-                              id="batch"
-                              name="batch"
-                              type="text"
-                              {...registerSignUp("batch")}
-                              placeholder="Enter your batch"
-                            />
-                            {errorsSignUp.batch && (
-                              <p className="text-red-500">
-                                {errorsSignUp.batch.message}
-                              </p>
-                            )}
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="graduationYear">
-                              Graduation Year
-                            </Label>
-                            <Input
-                              id="graduationYear"
-                              name="graduationYear"
-                              type="text"
-                              {...registerSignUp("graduationYear")}
-                              placeholder="Enter your graduation year"
-                            />
-                            {errorsSignUp.graduationYear && (
-                              <p className="text-red-500">
-                                {errorsSignUp.graduationYear.message}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  )} */}
 
                   <Button className="w-full mt-6" type="submit">
                     <LogIn className="mr-2 w-4 h-4" /> Sign Up

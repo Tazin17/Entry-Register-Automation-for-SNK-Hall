@@ -26,11 +26,17 @@ import { Search } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { theme, setTheme } = useTheme("dark");
   console.log("Current theme:", theme);
+
+  const router = useRouter();
+  const handleNavigation = (path, item) => {
+    router.push(path);
+  };
 
   return (
     <header className="bg-white dark:bg-[rgb(36,37,38)] text-foreground shadow-md h-16 fixed top-0 left-0 right-0 z-50 p-2 ">
@@ -139,7 +145,10 @@ const Header = () => {
                   </>
                 )}
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem
+                onClick={() => handleNavigation("/user-login")}
+                className="cursor-pointer"
+              >
                 <LogOut />
                 <span className="ml-2">Logout</span>
               </DropdownMenuItem>
