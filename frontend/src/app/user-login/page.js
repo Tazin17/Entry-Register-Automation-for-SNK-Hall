@@ -95,7 +95,11 @@ const page = () => {
   const [isAlumni, setIsAlumni] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-green-900 flex items-center justify-center p-2 ">
+    // <div className="min-h-screen bg-gradient-to-br from-blue-900 to-green-900 flex items-center justify-center p-2 ">
+    <div
+      div
+      className="min-h-screen bg-gradient-to-br from-[rgb(81,51,164)] to-[rgb(59,148,102)] flex items-center justify-center p-2"
+    >
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -104,10 +108,10 @@ const page = () => {
         <Card className="w-full max-w-md dark:text-white mt-20">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-center">
-              <span>CUETbook</span>
+              <span>SNK Hall Entry</span>
             </CardTitle>
             <CardDescription className="text-center">
-              Connect with CUETians around the campus and the world!
+              To ensure a secure automation hall entry system for SNK Hall!
             </CardDescription>
           </CardHeader>
 
@@ -121,22 +125,39 @@ const page = () => {
               <TabsContent value="login">
                 <form>
                   <div className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="loginEmail">Email</Label>
+                    {/* <div className="space-y-2">
+                      <Label htmlFor="loginEmail">Student ID</Label>
                       <Input
-                        id="loginEmail"
-                        name="email"
-                        type="email"
-                        {...registerLogin("email")}
-                        placeholder="Enter your email"
+                        id="studentid"
+                        name="std_id"
+                        type="number"
+                        {...registerLogin("number")}
+                        placeholder="Enter your Student ID"
                         className="col-span-3 dark:border-gray-400"
                       />
-                      {errorsLogin.email && (
+                      {errorsLogin.number && (
                         <p className="text-red-500">
                           {errorsLogin.email.message}
                         </p>
                       )}
+                    </div> */}
+                    <div className="space-y-2">
+                      <Label htmlFor="studentid">Student ID</Label>
+                      <Input
+                        id="studentid"
+                        name="std_id"
+                        type="text" // Use text for alphanumeric or IDs with leading zeros
+                        {...registerLogin("std_id")}
+                        placeholder="Enter your Student ID"
+                        className="col-span-3 dark:border-gray-400"
+                      />
+                      {errorsLogin.std_id && (
+                        <p className="text-red-500">
+                          {errorsLogin.std_id.message}
+                        </p>
+                      )}
                     </div>
+
                     <div className="space-y-2">
                       <Label htmlFor="loginPassword">Password</Label>
                       <Input
