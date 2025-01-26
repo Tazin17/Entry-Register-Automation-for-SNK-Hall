@@ -3,7 +3,7 @@ import { Separator } from '@/components/ui/separator';
 const HomeCard = () => {
     return (
         <div className=" flex flex-col top-1/2 transform-translate-y-1/2 bg-[#D8E0E4] items-center p-16 rounded-md shadow-md m-8">
-            <div className='bg-white flex flex-col items-center space-y-16 mb-16 rounded-md p-4 shadow-md'>
+            <div className='bg-white dark:text-black flex flex-col items-center space-y-16 mb-16 rounded-md p-4 shadow-md'>
                         
                 <div className="font-bold text-3xl">Total</div>
 
@@ -20,7 +20,7 @@ const HomeCard = () => {
                     </div>
                 </div>           
             </div>
-            <div className='bg-white flex flex-col items-center space-y-16 rounded-md p-4 shadow-md'>
+            <div className='bg-white dark:text-black flex flex-col items-center space-y-16 rounded-md p-4 shadow-md'>
                         
                 <div className="font-bold text-3xl">Current</div>
 
