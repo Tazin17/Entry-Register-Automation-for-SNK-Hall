@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
   	extend: {
+		backgroundImage:{
+			'custom-bg': "url('/back.jpg')",
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

@@ -17,9 +17,7 @@ const page = () => {
         <main className="flex flex-1 flex-col justify-center items-center bg-black">
           {/* Upper Section with Pink Background */}
           
-          <div
-        className="w-full flex-1 bg-custom-bg bg-cover flex justify-center items-center bg-cover bg-center bg-pink-200"
-        ></div>
+          <div className="w-full flex-1 bg-custom-bg bg-cover flex justify-center items-center bg-cover bg-center bg-pink-200"></div>
 
           {/* Lower Section with White Background */}
           <div className="w-full bg-white flex-1 flex justify-center items-center">
