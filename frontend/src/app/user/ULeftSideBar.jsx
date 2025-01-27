@@ -13,7 +13,7 @@ const ULeftSideBar = () => {
                     <div className='flex items-center space-x-2 cursor-pointer'>
                         <Avatar className='h-10 w-10'>
                            <AvatarImage/>
-                            <AvatarFallback>S</AvatarFallback>
+                            <AvatarFallback className="dark:bg-gray-600">S</AvatarFallback>
                         </Avatar>
                         <span className='font-semibold'>Student</span>
                     </div>

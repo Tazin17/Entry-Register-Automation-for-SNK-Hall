@@ -1,14 +1,41 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 const ProfileCard = ({ name, department, lateEntries, temporaryLeaves }) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 h-full text-center w-[100%]">
+    <div className="bg-[rgb(199,225,249)] rounded-lg shadow-lg p-6 h-full text-center w-[110%] ml-[2px]">
       {/* Profile Avatar */}
-      <div className="relative flex justify-center mb-4">
-        <div className="bg-orange-300 rounded-full w-24 h-24 flex items-center justify-center">
+      {/* <div className="relative flex justify-center mb-4"> */}
+      {/* <div className="flex items-center justify-center">
           <span className="text-5xl font-bold text-white">👩</span>
-        </div>
-      </div>
+        </div> */}
+
+      {/* <Button
+              className="absolute bottom-4 right-4 flex items-center"
+              variant="secondary"
+              size="sm"
+              onClick={() => setIsEditCoverModel(true)}
+            >
+              <Camera className="mr-0 md:mr-2 h-4 w-4" />
+              <span className="hidden md:block">Edit Cover Photo</span>
+            </Button> */}
+
+      {/* </div> */}
+
+
+      <div className="ml-[340px] w-24 h-24 rounded-full overflow-hidden">
+            <a
+              href="https://your-link-here.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://wallpapercave.com/wp/wp12969847.jpg"
+                alt="cover"
+                className="w-full h-full object-cover"
+              />
+            </a>
+          </div>
+
 
       {/* User Information */}
       <h1 className="text-2xl font-bold text-gray-700 mt-4">{name}</h1>
@@ -19,19 +46,25 @@ const ProfileCard = ({ name, department, lateEntries, temporaryLeaves }) => {
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-700">{lateEntries}</h2>
           <p className="text-sm text-gray-500">
-            Late Entries<br />in this Year
+            Late Entries
+            <br />
+            in this Year
           </p>
         </div>
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-700">{temporaryLeaves}</h2>
+          <h2 className="text-2xl font-bold text-gray-700">
+            {temporaryLeaves}
+          </h2>
           <p className="text-sm text-gray-500">
-            Temporary Leave<br />in this Year
+            Temporary Leave
+            <br />
+            in this Year
           </p>
         </div>
       </div>
 
       {/* Show More Button */}
-      <button className="mt-6 px-4 py-2 bg-custom-bg bg-cover bg-center bg-pink-400 text-white font-bold rounded-full hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-pink-300">
+      <button className="mt-6 px-4 py-2 text-white font-bold rounded-full bg-[rgb(51,55,74)] ">
         Show More
       </button>
     </div>
