@@ -2,9 +2,13 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import React from "react";
+// import { useRouter } from 'next/navigation';
 
 const LateStudentsCard = () => {
-    
+    // const router=useRouter();
+    // const handleNavigation = (path,item)=>{
+    //     router.push(path);
+    //   };
     const student_details = [
     {
         studentId: "2004004",

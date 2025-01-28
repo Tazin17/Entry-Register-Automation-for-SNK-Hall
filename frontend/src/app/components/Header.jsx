@@ -56,7 +56,8 @@ const Header = () => {
               variant="ghost"
               size="icon"
               className="relative text-gray-600 dark:text-gray-400 hover:text-blue-600 hover:bg-transparent"
-            >
+              // onClick={() => handleNavigation(path)}
+           >
               <Icon />
             </Button>
           ))}
@@ -120,11 +121,15 @@ const Header = () => {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem 
+                  onClick={()=>handleNavigation('/HA-profile')}
+              className="cursor-pointer">
                 <Users />
                 <span className="ml-2">Profile</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem
+             
+              className="cursor-pointer">
                 <MessageCircle />
                 <span className="ml-2">Messages</span>
               </DropdownMenuItem>

@@ -56,7 +56,7 @@
 //           </div>
 //         </div>
 //       </div>
-     
+
 //     </aside>
 //       // {isFormVisible && <PostForm onClose={() => setIsFormVisible(false)} />}
 //   );
@@ -64,7 +64,6 @@
 // };
 
 // export default LeftSideBar;
-
 
 // "use client";
 // import React from "react";
@@ -102,7 +101,7 @@
 //           <Button
 //             variant="ghost"
 //             className="w-full justify-start dark:text-black dark:hover:bg-gray-400"
-//             onClick={() => setIsFormVisible(true)} 
+//             onClick={() => setIsFormVisible(true)}
 //           >
 //             <Send className="mr-4" /> Notice Submission
 //           </Button>
@@ -129,14 +128,17 @@
 
 // export default LeftSideBar;
 
-
 import React from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { User, Users, BookUser, Send } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-
+import { useRouter } from "next/navigation";
 const LeftSideBar = ({ setIsFormVisible }) => {
+  const router=useRouter();
+  const handleNavigation = (path,item)=>{
+      router.push(path);
+    };
   return (
     <aside className="bg-[#D8E0E4] fixed top-16 left-0 h-full w-64 p-4 flex flex-col z-50">
       <div className="flex flex-col h-full overflow-y-auto">
@@ -152,12 +154,14 @@ const LeftSideBar = ({ setIsFormVisible }) => {
           <Button
             variant="ghost"
             className="w-full justify-start dark:text-black dark:hover:bg-gray-400"
+                onClick={()=>handleNavigation('/user-details')}
           >
             <BookUser className="mr-4" /> Student Details
           </Button>
           <Button
             variant="ghost"
             className="w-full justify-start dark:text-black dark:hover:bg-gray-400"
+        
           >
             <Users className="mr-4" /> Late Students
           </Button>

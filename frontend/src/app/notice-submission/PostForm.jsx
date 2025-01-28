@@ -41,7 +41,6 @@
 
 // export default PostForm;
 
-
 import React from "react";
 
 const PostForm = ({ onClose }) => {
@@ -65,12 +64,21 @@ const PostForm = ({ onClose }) => {
             placeholder="Write the Notice Content here..."
             className="border p-2 rounded-md min-h-[400px]"
           />
-          <button
+          {/* <button
             type="submit"
             className="bg-[rgb(16,21,27)] text-white p-2 rounded-md hover:bg-[rgb(50,55,60)]"
           >
             Submit
-          </button>
+          </button> */}
+
+          <div className="flex items-center justify-center">
+            <button
+              type="submit"
+              className="bg-[rgb(85,105,139)] text-white p-2 hover:bg-[rgb(50,55,60)] rounded-md w-32"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </div>

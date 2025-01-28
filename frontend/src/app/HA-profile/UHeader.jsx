@@ -104,7 +104,7 @@ const Header = () => {
                   {/* <div className='flex items-center space-x-2 cursor-pointer'> */}
                                         <Avatar className='h-10 w-10'>
                                            <AvatarImage/>
-                                            <AvatarFallback className="dark:bg-gray-600">S</AvatarFallback>
+                                            <AvatarFallback className="dark:bg-gray-600">P</AvatarFallback>
                                         </Avatar>
                                         {/* <span className='font-semibold'>Student</span> */}
                                     {/* </div> */}
@@ -133,8 +133,8 @@ const Header = () => {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                    onClick={()=>handleNavigation('/user')}
+              <DropdownMenuItem 
+                    onClick={()=>handleNavigation('/HA-profile')}
               className="cursor-pointer">
                 <Users />
                 <span className="ml-2">Profile</span>
