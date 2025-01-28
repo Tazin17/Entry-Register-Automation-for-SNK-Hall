@@ -26,7 +26,7 @@ import { useRouter } from "next/navigation";
 // import PostForm from "@/app/notice-submission/PostForm";
 
 const Header = () => {
-  const [isFormVisible, setIsFormVisible] = useState(false);
+  // const [isFormVisible, setIsFormVisible] = useState(false);
   const { theme, setTheme } = useTheme("dark");
 
   const router = useRouter();

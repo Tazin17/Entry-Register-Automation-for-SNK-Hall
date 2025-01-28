@@ -38,7 +38,7 @@ const GuestForm = () => {
       <div className="flex items-center justify-center">
         <button
           type="submit"
-          className="bg-[rgb(44,50,41)] text-white p-2 hover:bg-[rgb(50,55,60)] rounded-md w-32"
+          className="bg-[rgb(84,130,91)] dark:bg-[rgb(54,72,54)] dark:hover:bg-[rgb(131,165,149)] text-white p-2 hover:bg-[rgb(102,180,118)] rounded-md w-32"
         >
           Submit
         </button>

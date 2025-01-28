@@ -46,6 +46,7 @@ const LeftSideBar = ({ setIsFormVisible }) => {
           <Button
             variant="ghost"
             className="w-full justify-start dark:text-black dark:hover:bg-gray-400"
+            onClick={()=>handleNavigation('/guest-entry')}
           >
             <User className="mr-4" /> Guest Entry
           </Button>
