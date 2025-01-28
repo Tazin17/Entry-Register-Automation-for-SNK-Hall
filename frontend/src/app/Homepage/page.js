@@ -66,7 +66,7 @@ const Homepage = () => {
       <Header />
       <main className="flex flex-1 pt-16">
         <LeftSideBar setIsFormVisible={setIsFormVisible} />
-        <div className="ml-100 flex-1 px-4 py-6 lg:max-w-2xl xl:max-w-3xl h-full pb-16 mx-auto">
+        <div className=" flex-1 p-4 py-6 lg:max-w-2xl xl:max-w-3xl h-full mx-auto">
           <HomeCard />
         </div>
       </main>

@@ -153,7 +153,7 @@ const LeftSideBar = ({ setIsFormVisible }) => {
             variant="ghost"
             className="w-full justify-start dark:text-black dark:hover:bg-gray-400"
           >
-            <BookUser className="mr-4" /> User Details
+            <BookUser className="mr-4" /> Student Details
           </Button>
           <Button
             variant="ghost"
