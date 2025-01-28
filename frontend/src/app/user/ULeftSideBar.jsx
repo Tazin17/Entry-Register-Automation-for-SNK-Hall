@@ -3,11 +3,15 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button';
 import { User, Users, BookUser, Send}  from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-
+import { useRouter } from "next/navigation";
 const ULeftSideBar = () => {
+    const router = useRouter();
+      const handleNavigation = (path) => {
+        router.push(path);
+      };
     return (
         <aside className='bg-[#D8E0E4] fixed top-16 left-0 h-full w-64 p-4 transform transition-transform duration-1200 ease-in-out md:translate-x-0 flex flex-col z-50 md:z-0'>
-            <div className='flex flex-col h-full overflow-y-auto'>
+            <div className='flex flex-col h-full overflow-y-auto dark:text-black'>
                 {/* navigation menu starts here */}
                 <nav className='space-y-4 flex-grow'>
                     <div className='flex items-center space-x-2 cursor-pointer'>
@@ -39,6 +43,7 @@ const ULeftSideBar = () => {
                     <Button
                     variant = "ghost"
                     className="w-full justify-start"
+                    onClick={()=>handleNavigation('/guest-request')}
                     >
                         <User className='mr-4'/> Guest Request
                     </Button>

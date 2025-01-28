@@ -161,14 +161,14 @@ const LeftSideBar = ({ setIsFormVisible }) => {
           <Button
             variant="ghost"
             className="w-full justify-start dark:text-black dark:hover:bg-gray-400"
-        
+            onClick={()=>handleNavigation('/late-students')}
           >
             <Users className="mr-4" /> Late Students
           </Button>
           <Button
             variant="ghost"
             className="w-full justify-start dark:text-black dark:hover:bg-gray-400"
-            onClick={() => setIsFormVisible(true)} // Show PostForm
+            onClick={()=>handleNavigation('/notice-submission')}
           >
             <Send className="mr-4" /> Notice Submission
           </Button>
