@@ -25,12 +25,14 @@ const ULeftSideBar = () => {
                     <Button
                     variant = "ghost"
                     className="w-full justify-start"
+                    onClick={()=>handleNavigation('/temporary-leave')}
                     >
                         <BookUser className='mr-4'/> Notify Leave
                     </Button>
                     <Button
                     variant = "ghost"
                     className="w-full justify-start"
+                    onClick={()=>handleNavigation('/user-table')}
                     >
                         <Users className='mr-4'/> Late Frequency
                     </Button>
