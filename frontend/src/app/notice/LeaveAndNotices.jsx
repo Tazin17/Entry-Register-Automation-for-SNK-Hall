@@ -23,8 +23,8 @@ const LeaveAndNotices = () => {
     Swal.fire({
       title: notice.title,
       html: `<div style="text-align: left;">
-      <p style="text-20px"><strong>Date:</strong> ${notice.date}</p>
-             <p><strong>About:</strong> ${notice.content}</p>,
+      <p style="font-20px"><strong>Date:</strong> ${notice.date}</p>
+             <p><strong>About:</strong> ${notice.content}</p>
               <p><strong>Description:</strong> ${notice.description}</p>
               </div>`,
 
