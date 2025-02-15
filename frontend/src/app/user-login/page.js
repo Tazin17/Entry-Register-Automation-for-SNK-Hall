@@ -25,12 +25,7 @@ import {
   SelectTrigger,
   SelectContent,
 } from "@/components/ui/select";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+
 // import { useRouter } from "next/navigation";
 const page = () => {
   const router = useRouter();
@@ -46,28 +41,19 @@ const page = () => {
       .string()
       .email("Invalid email format")
       .required("Email is required"),
+    contact_no: yup
+      .string()
+      .matches(/^[0-9]{11}$/, "Contact number must be exactly 11 digits")
+      .required("Contact number is required"),
     password: yup
       .string()
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
-    dateOfBirth: yup.date().required("Birth date is required"),
-    gender: yup
+    confirmPassword: yup
       .string()
-      .oneOf(["male", "female", "other"], "Please select a gender")
-      .required("Gender is required"),
+      .oneOf([yup.ref("password")], "Passwords must match")
+      .required("Password is required"),
     studentId: yup.string().required("Student ID is required"),
-    department: yup.string().required("Department is required"),
-    isAlumni: yup
-      .string()
-      .required("Please select if you are a student or alumni"),
-    batch: yup.string().when("isAlumni", {
-      is: "alumni",
-      then: yup.string().required("Batch is required for alumni"),
-    }),
-    graduationYear: yup.string().when("isAlumni", {
-      is: "alumni",
-      then: yup.string().required("Graduation year is required for alumni"),
-    }),
   });
   const loginSchema = yup.object().shape({
     email: yup
@@ -172,7 +158,7 @@ const page = () => {
                 </form>
               </TabsContent>
 
-              <TabsContent value="signup" className="mt-500">
+              <TabsContent value="signup" >
                 <form>
                   <div className="grid grid-cols-2 gap-6">
                     {/* <div className="space-y-4"> */}
@@ -195,12 +181,12 @@ const page = () => {
                         )}
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="studentid">Student ID</Label>
+                        <Label htmlFor="signupStudentId">Student ID</Label>
                         <Input
-                          id="studentid"
-                          name="std_id"
+                          id="signupStudentId"
+                          name="stddentId"
                           type="text" // Use text for alphanumeric or IDs with leading zeros
-                          {...registerLogin("std_id")}
+                          {...registerSignUp("std_id")}
                           placeholder="Enter your Student ID"
                           className="col-span-3 dark:border-gray-400"
                         />
@@ -218,7 +204,7 @@ const page = () => {
                           type="tel" // Use tel for phone numbers
                           placeholder="Enter your Contact No."
                           className="col-span-3 dark:border-gray-400 "
-                          {...registerLogin("contact_no")} // Update the field name accordingly
+                          {...registerSignUp("contact_no")} // Update the field name accordingly
                         />
                         {errorsLogin.contact_no && (
                           <p className="text-red-500">
@@ -226,17 +212,17 @@ const page = () => {
                           </p>
                         )}
                       </div>
-                    </div>
 
-                    {/* Column 2 */}
-                    <div className="space-y-4">
+                      </div>
+                      <div className="space-y-4">
+                    
                       <div className="space-y-2">
-                        <Label htmlFor="loginEmail">Email</Label>
+                        <Label htmlFor="signupEmail">Email</Label>
                         <Input
-                          id="loginEmail"
+                          id="signupEmail"
                           name="email"
                           type="email"
-                          {...registerLogin("email")}
+                          {...registerSignUp("email")}
                           placeholder="Enter your email"
                           className="col-span-3 dark:border-gray-400"
                         />
@@ -246,14 +232,15 @@ const page = () => {
                           </p>
                         )}
                       </div>
+                    
 
                       <div className="space-y-2">
-                        <Label htmlFor="loginPassword">Password</Label>
+                        <Label htmlFor="signupPassword">Password</Label>
                         <Input
-                          id="loginPassword"
+                          id="signupPassword"
                           name="password"
                           type="password"
-                          {...registerLogin("password")}
+                          {...registerSignUp("password")}
                           placeholder="Enter your Password"
                           className="col-span-3 dark:border-gray-400"
                         />
@@ -264,18 +251,18 @@ const page = () => {
                         )}
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="loginPassword">Confirm Password</Label>
+                        <Label htmlFor="signupconfirmPassword">Confirm Password</Label>
                         <Input
-                          id="CloginPassword"
-                          name="Cpassword"
+                          id="signupconfirmPassword"
+                          name="confirmPassword"
                           type="password"
-                          {...registerLogin("Cpassword")}
+                          {...registerSignUp("confirmPassword")}
                           placeholder="Re-Enter your Password"
                           className="col-span-3 dark:border-gray-400"
                         />
-                        {errorsLogin.Cpassword && (
+                        {errorsLogin.confirmPassword && (
                           <p className="text-red-500">
-                            {errorsLogin.Cpassword.message}
+                            {errorsLogin.confirmPassword.message}
                           </p>
                         )}
                       </div>
