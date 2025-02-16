@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { motion } from "framer-motion";
 import {
   Card,
@@ -18,18 +18,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { LogIn } from "lucide-react";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import {
-  Select,
-  SelectItem,
-  SelectTrigger,
-  SelectContent,
-} from "@/components/ui/select";
+import { loginUser, registerUser } from "../../service/auth.service"
+import toast from "react-hot-toast";
+
 
 // import { useRouter } from "next/navigation";
 const page = () => {
   const router = useRouter();
-  // const router = useRouter();
   const handleNavigation = (path, item) => {
     router.push(path);
   };
@@ -53,16 +48,15 @@ const page = () => {
       .string()
       .oneOf([yup.ref("password")], "Passwords must match")
       .required("Password is required"),
-    studentId: yup.string().required("Student ID is required"),
+    id: yup.string().required("Student ID is required"),
   });
   const loginSchema = yup.object().shape({
-    email: yup
+    id: yup
       .string()
-      .email("Invalid email format")
-      .required("Email is required"),
+      .required("ID is required"),
     password: yup
       .string()
-      .min(6, "Password must be at least 6 characters")
+      .min(3, "Password must be at least 6 characters")
       .required("Password is required"),
   });
   const {
@@ -82,7 +76,39 @@ const page = () => {
     resolver: yupResolver(registerSchema),
   });
 
-  const [isAlumni, setIsAlumni] = useState(false);
+  const onSubmitRegister = async (data) => {
+    try {
+      const result = await registerUser(data)
+      if (result.status === 'success') {
+        router.push('/')
+      }
+      toast.success('User register successfully')
+    } catch (error) {
+      console.error(error);
+      toast.error('Student ID already exist')
+    } 
+  }
+  //reset the form
+  useEffect(() => {
+    resetLoginForm();
+    resetSignUpForm()
+  }, [resetLoginForm, resetSignUpForm])
+
+  const onSubmitLogin = async (data) => {
+    try {
+      const result = await loginUser(data)
+      if (result.status === 'success') {
+        if( result.data?.id?.startsWith('admin')){
+          router.push('/user-details')
+        }
+        else router.push('/')
+      }
+      toast.success('User login successfully')
+    } catch (error) {
+      console.error(error);
+      toast.error('Invalid ID or Password')
+    } 
+  }
 
   return (
     // <div className="min-h-screen bg-gradient-to-br from-blue-900 to-green-900 flex items-center justify-center p-2 ">
@@ -113,21 +139,21 @@ const page = () => {
               </TabsList>
 
               <TabsContent value="login">
-                <form>
+                <form onSubmit={handleSubmitLogin(onSubmitLogin)}>
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="loginEmail">Email</Label>
+                      <Label htmlFor="loginId">ID</Label>
                       <Input
-                        id="loginEmail"
-                        name="email"
-                        type="email"
-                        {...registerLogin("email")}
-                        placeholder="Enter your email"
+                        id="loginId"
+                        name="id"
+                        type="text"
+                        {...registerLogin("id")}
+                        placeholder="Enter your ID"
                         className="col-span-3 dark:border-gray-400"
                       />
-                      {errorsLogin.email && (
+                      {errorsLogin.id && (
                         <p className="text-red-500">
-                          {errorsLogin.email.message}
+                          {errorsLogin.id.message}
                         </p>
                       )}
                     </div>
@@ -159,7 +185,7 @@ const page = () => {
               </TabsContent>
 
               <TabsContent value="signup" >
-                <form>
+                <form onSubmit={handleSubmitSignUp(onSubmitRegister)}> 
                   <div className="grid grid-cols-2 gap-6">
                     {/* <div className="space-y-4"> */}
                     {/* Column 1 */}
@@ -184,15 +210,15 @@ const page = () => {
                         <Label htmlFor="signupStudentId">Student ID</Label>
                         <Input
                           id="signupStudentId"
-                          name="stddentId"
+                          name="id"
                           type="text" // Use text for alphanumeric or IDs with leading zeros
-                          {...registerSignUp("std_id")}
+                          {...registerSignUp("id")}
                           placeholder="Enter your Student ID"
                           className="col-span-3 dark:border-gray-400"
                         />
-                        {errorsLogin.std_id && (
+                        {errorsLogin.id && (
                           <p className="text-red-500">
-                            {errorsLogin.std_id.message}
+                            {errorsLogin.id.message}
                           </p>
                         )}
                       </div>
@@ -201,7 +227,7 @@ const page = () => {
                         <Input
                           id="contactno"
                           name="contact_no"
-                          type="tel" // Use tel for phone numbers
+                          type="text" 
                           placeholder="Enter your Contact No."
                           className="col-span-3 dark:border-gray-400 "
                           {...registerSignUp("contact_no")} // Update the field name accordingly
