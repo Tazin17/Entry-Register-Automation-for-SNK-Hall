@@ -91,7 +91,7 @@ const page = () => {
   //reset the form
   useEffect(() => {
     resetLoginForm();
-    resetSignUpForm()
+    resetSignUpForm();
   }, [resetLoginForm, resetSignUpForm])
 
   const onSubmitLogin = async (data) => {
