@@ -21,5 +21,16 @@ const checkUserAuth = async(req, res) =>{
        return response(res, 500, 'Internal server error', error.message)
     }
 }
+const getAllUser = async(req, res) => {
+   try {
+       const user = await User.find()
+       .sort({createdAt: -1})
 
-module.exports= { checkUserAuth }
+       return response(res, 201, 'Get all user successfully', user)
+   } catch (error) {
+       console.log('error getting user',error)
+       return response(res,500,'Internal server error',error.message)
+   }
+}
+
+module.exports= { checkUserAuth , getAllUser }

@@ -8,8 +8,6 @@ const registerUser = async (req, res) => {
     try{
         const { username, id, contact_no, email, password, confirmPassword  } = req.body;
 
-        console.log("from server ",username);
-
         if (!username || !email || !password || !id || !contact_no ) {
             return res.status(400).json({ message: 'All fields are required.' });
         }
