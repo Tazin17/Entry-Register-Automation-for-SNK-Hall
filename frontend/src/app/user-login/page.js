@@ -101,7 +101,7 @@ const page = () => {
         if( result.data?.id?.startsWith('admin')){
           router.push('/user-details')
         }
-        else router.push('/')
+        else router.push('/user')
       }
       toast.success('User login successfully')
     } catch (error) {
