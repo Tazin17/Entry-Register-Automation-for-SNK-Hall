@@ -1,6 +1,8 @@
 import { Separator } from "@/components/ui/separator";
 import { getUserCount } from "@/service/user.service";
 import { Circle } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 const HomeCard = () => {
 
   // const getUserDataCount 
@@ -11,8 +13,7 @@ const HomeCard = () => {
   const getUserDataCount = async () => {
     try {
       const result = await getUserCount();
-      console.log(result)
-
+    
       // userCount,
       // staffCount,
       // activeUserCount,
@@ -22,16 +23,19 @@ const HomeCard = () => {
         setTotalStaffCount(result?.data?.staffCount);
         setActiveUserCount(result?.data?.activeUserCount)
         setActiveStaffCount(result?.data?.activeUserCount)
-        console.log(notices);
-        console.log("hi")
         toast.success("Fetching User Count successfully");
       }
-     // toast.success("Fetching Notice Details successfully");
     } catch (error) {
       console.error(error);
       toast.error("Fetching User Count not successful");
     }
   };
+
+  // ✅ Logs state only when it updates
+    useEffect(() => {
+      getUserDataCount ();
+    }, []);
+  
 
   return (
     <div className=" flex flex-col top-1/2 transform-translate-y-1/2 bg-[#D8E0E4] items-center px-12 pb-12 rounded-md shadow-md m-4">
