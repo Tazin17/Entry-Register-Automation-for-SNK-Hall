@@ -1,5 +1,6 @@
 const Admin = require('../model/Admin');
 const User = require('../model/User')
+const Staff = require('../model/Staff')
 const response = require("../utils/responseHandler");
 
 //check if user is authenticated or not 
@@ -32,23 +33,34 @@ const getAllUser = async(req, res) => {
        return response(res,500,'Internal server error',error.message)
    }
 }
-const getUserProfile = async(req, res) =>{
+
+const getUserCount = async (req, res) => {
     try {
-        const {userId} = req.params;
-        const loggedInUserId = req?.user?.userId
+        // Get the total number of users
+        const userCount = await User.countDocuments();
 
-        //fetch the user details and excude sensitive information
-        const userProfile = await User.findById(userId).select('-password').exec();
+        // Get the total number of staff
+        const staffCount = await Staff.countDocuments();
 
-        if(!userProfile) return response(res,403, 'User not found')
+        // Get the number of users whose status is true
+        const activeUserCount = await User.countDocuments({ status: true });
 
-        const isOwner = loggedInUserId === userId;
+        // Get the number of staff whose status is true
+        const activeStaffCount = await Staff.countDocuments({ status: true });
 
-        return response(res,201, 'user profile get successfully', {profile:userProfile,isOwner})
-     } catch (error) {
-        return response(res, 500, 'Internal server error', error.message)
-     }
-}
+        // Return the response with status 200 (OK)
+        return response(res, 200, 'Get user counts successfully', {
+            userCount,
+            staffCount,
+            activeUserCount,
+            activeStaffCount
+        });
+    } catch (error) {
+        // Log the error and return a 500 error message
+        console.log('Error fetching user counts:', error);
+        return response(res, 500, 'Internal server error', error.message);
+    }
+};
 
 
-module.exports= { checkUserAuth , getAllUser,getUserProfile }
+module.exports= { checkUserAuth , getAllUser, getUserCount }

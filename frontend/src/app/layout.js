@@ -81,7 +81,6 @@ export default function RootLayout({ children }) {
         <Toaster/>
         <ThemeProvider attribute="class" defaultTheme="light">
           <AuthWrapper>{children}</AuthWrapper>
-          
         </ThemeProvider>
       </body>
     </html>

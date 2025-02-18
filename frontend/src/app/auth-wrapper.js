@@ -5,9 +5,11 @@ import userStore from "../store/userStore";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
+import UHeader from "./user/UHeader"
 
 export default function AuthWrapper ({children}) {
     const {setUser, clearUser} = userStore();
+    const {user, clearuser} = userStore();
     const router = useRouter()
     const pathname = usePathname()
     const [loading,setLoading] = useState(true);
@@ -63,7 +65,15 @@ export default function AuthWrapper ({children}) {
 
     return (
         <>
-            {!isLoginPage && isAuthenticated && <Header/>}
+            {!isLoginPage && isAuthenticated && (
+                <>
+                    {user?.username === "admin" ? (
+                    <Header />
+                    ) : (
+                    <UHeader />
+                    )}
+                </>
+                )}
             {(isAuthenticated || isLoginPage) && children}
         </>
     )
