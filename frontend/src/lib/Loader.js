@@ -38,7 +38,7 @@ export default function Loader() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.5 }}
       >
-        CUETbook
+        Entry Register Automation System
       </motion.div>
     </div>
   );
