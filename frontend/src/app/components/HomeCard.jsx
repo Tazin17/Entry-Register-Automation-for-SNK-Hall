@@ -1,8 +1,38 @@
 import { Separator } from "@/components/ui/separator";
+import { getUserCount } from "@/service/user.service";
 import { Circle } from "lucide-react";
 const HomeCard = () => {
 
   // const getUserDataCount 
+  const [totalUserCount, setTotalUserCount] = useState(false); 
+  const [totalStaffCount, setTotalStaffCount] = useState(false); 
+  const [activeUserCount, setActiveUserCount] = useState(false); 
+  const [activeStaffCount, setActiveStaffCount] = useState(false);
+  const getUserDataCount = async () => {
+    try {
+      const result = await getUserCount();
+      console.log(result)
+
+      // userCount,
+      // staffCount,
+      // activeUserCount,
+      // activeStaffCount
+      if (result.status === "success") {
+        setTotalUserCount(result?.data?.userCount);
+        setTotalStaffCount(result?.data?.staffCount);
+        setActiveUserCount(result?.data?.activeUserCount)
+        setActiveStaffCount(result?.data?.activeUserCount)
+        console.log(notices);
+        console.log("hi")
+        toast.success("Fetching User Count successfully");
+      }
+     // toast.success("Fetching Notice Details successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Fetching User Count not successful");
+    }
+  };
+
   return (
     <div className=" flex flex-col top-1/2 transform-translate-y-1/2 bg-[#D8E0E4] items-center px-12 pb-12 rounded-md shadow-md m-4">
       <div className="font-bold text-3xl py-6 dark:text-black">Presence</div>
@@ -12,7 +42,7 @@ const HomeCard = () => {
         <div className="flex mx-20 space-x-40">
           <div className="flex flex-col">
             <div className="font-bold text-5xl" align="center">
-              49
+              {totalStaffCount}
             </div>
             <Separator className="mt-4 w-28 bg-black" />
             <div className="text-gray-400 text-md" align="center">
@@ -22,7 +52,7 @@ const HomeCard = () => {
           <div className="flex flex-col">
             <div className="font-bold text-5xl" align="center">
               {" "}
-              500
+              {totalUserCount}
             </div>
             <Separator className="mt-4 w-28 bg-black" />
             <div className="text-gray-400 text-md" align="center">
@@ -37,7 +67,7 @@ const HomeCard = () => {
         <div className="flex mx-20 space-x-40">
           <div className="flex flex-col">
             <div className="font-bold text-5xl" align="center">
-              23
+              {activeStaffCount}
             </div>
             <Separator className="mt-4 w-28 bg-black" />
             <div className="text-gray-400 text-md" align="center">
@@ -46,7 +76,7 @@ const HomeCard = () => {
           </div>
           <div className="flex flex-col">
             <div className="font-bold text-5xl" align="center">
-              434
+              {activeUserCount}
             </div>
             <Separator className="mt-4 w-28 bg-black" />
             <div className="text-gray-400 text-md" align="center">

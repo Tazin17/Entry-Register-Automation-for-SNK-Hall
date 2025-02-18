@@ -41,6 +41,7 @@ const ULeftSideBar = () => {
                     <Button
                     variant = "ghost"
                     className="w-full justify-start"
+                    onClick={()=>handleNavigation('/notice')}
                     >
                         <Send className='mr-4'/> Notice
                     </Button>
