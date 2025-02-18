@@ -17,6 +17,4 @@ router.post('/leaveposts',authMiddleware,multerMiddleware.single('media'),create
 //get all posts
 router.get('/leaveposts',authMiddleware,getAllLeavePosts)
 
-
-
 module.exports = router;

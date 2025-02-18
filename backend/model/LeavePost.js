@@ -1,15 +1,24 @@
 const mongoose = require("mongoose");
 
-const leavepostSchema = new mongoose.Schema(
-  {
-    
-    startdate: { type: Date },
-    enddate: { type: Date },
-    content: { type: String }
-
+const LeaveRequestSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
   },
-  { timestamps: true }
-);
+  startDate: {
+    type: Date,
+    required: true,
+  },
+  endDate: {
+    type: Date,
+    required: true,
+  },
+  reason: {
+    type: String,
+    required: true,
+  },
+ 
+});
 
-const leavePost = mongoose.model("leavePost", leavepostSchema);
-module.exports = leavePost;
+module.exports = mongoose.model("LeavePost", LeaveRequestSchema);

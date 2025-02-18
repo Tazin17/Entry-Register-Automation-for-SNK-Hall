@@ -266,23 +266,27 @@ const createPost = async (req, res) => {
 // Create a new leave post
 const createLeavePost = async (req, res) => {
     try {
-        const { startDate, endDate, content } = req.body;
-        const file = req.file;
-        let mediaUrl = null;
-        let mediaType = null;
 
-        if (file) {
-            const uploadResult = await uploadFileToCloudinary(file);
-            mediaUrl = uploadResult?.secure_url;
-            mediaType = file.mimetype.startsWith('video') ? 'video' : 'image';
-        }
+        console.log("Received Request Body:", req.body);
+        console.log("Extracted userId:", req.user?.userId);
+        const userId = req.user.userId;
+        const { startDate, endDate, reason } = req.body;
+        //const file = req.file;
+        // let mediaUrl = null;
+        // let mediaType = null;
+
+        // if (file) {
+        //     const uploadResult = await uploadFileToCloudinary(file);
+        //     mediaUrl = uploadResult?.secure_url;
+        //     mediaType = file.mimetype.startsWith('video') ? 'video' : 'image';
+        // }
 
         const newLeavePost = new LeavePost({
+            userId: userId,
             startDate,
             endDate,
-            content,
-            mediaUrl,
-            mediaType
+            reason,
+            
         });
 
         await newLeavePost.save();
