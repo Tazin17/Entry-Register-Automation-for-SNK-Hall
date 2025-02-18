@@ -52,7 +52,7 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import LeftSideBar from "../components/LeftSideBar";
 import HomeCard from "../components/HomeCard";
-import PostForm from "../notice-submission/PostForm";
+import PostForm from "../notice-submission/NewPostForm";
 import ProfileCard from "../components/ProfileCard";
 const Homepage = () => {
   const [isFormVisible, setIsFormVisible] = useState(false); // State for PostForm visibility

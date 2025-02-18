@@ -134,11 +134,14 @@ import { Button } from "@/components/ui/button";
 import { User, Users, BookUser, Send } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/navigation";
+import userStore from "@/store/userStore";
+
 const LeftSideBar = ({ setIsFormVisible }) => {
   const router=useRouter();
   const handleNavigation = (path,item)=>{
       router.push(path);
     };
+  const {user, clearUser} = userStore();
   return (
     <aside className="bg-[#D8E0E4] fixed top-16 left-0 h-full w-64 p-4 flex flex-col z-50">
       <div className="flex flex-col h-full overflow-y-auto">
@@ -146,9 +149,9 @@ const LeftSideBar = ({ setIsFormVisible }) => {
           <div className="flex items-center space-x-2">
             <Avatar className="h-10 w-10">
               <AvatarImage />
-              <AvatarFallback>P</AvatarFallback>
+              <AvatarFallback>{user?.username[0]}</AvatarFallback>
             </Avatar>
-            <span className="font-semibold dark:text-black">Provost</span>
+            <span className="font-semibold dark:text-black">{user?.username}</span>
           </div>
 
           <Button

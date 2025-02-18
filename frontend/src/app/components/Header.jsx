@@ -23,6 +23,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React, { useState } from "react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
+import userStore from "@/store/userStore";
 // import PostForm from "@/app/notice-submission/PostForm";
 
 const Header = () => {
@@ -33,6 +34,8 @@ const Header = () => {
   const handleNavigation = (path) => {
     router.push(path);
   };
+  const {user, clearUser} = userStore();
+  console.log(user);
 
   return (
     <header className="bg-white dark:bg-[rgb(36,37,38)] text-foreground shadow-md h-16 fixed top-0 left-0 right-0 z-50 p-2">
@@ -95,7 +98,7 @@ const Header = () => {
               <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                 <Avatar className="h-8 w-8 mr-2">
                   <AvatarImage />
-                  <AvatarFallback>P</AvatarFallback>
+                  <AvatarFallback>{user?.username[0]}</AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>
@@ -106,15 +109,15 @@ const Header = () => {
                     <Avatar className="h-8 w-8 mr-2">
                       <AvatarImage />
                       <AvatarFallback className="dark:bg-gray-400">
-                        P
+                        {user?.username[0]}
                       </AvatarFallback>
                     </Avatar>
                     <div>
                       <p className="text-sm font-medium leading-none">
-                        Walisa Alam
+                        {user?.username}
                       </p>
                       <p className="text-xs mt-2 text-gray-medium leading-none">
-                        walisaalam810@gmail.com
+                         {user?.email}
                       </p>
                     </div>
                   </div>
