@@ -1,8 +1,9 @@
 import Image from "next/image";
-
-const ProfileCard = ({ name, department, lateEntries, temporaryLeaves }) => {
+import userStore from "@/store/userStore";
+const ProfileCard = ({ name, department,id, lateEntries, temporaryLeaves }) => {
+  const { user, clearUser } = userStore();
   return (
-    <div className="bg-[rgb(199,225,249)] rounded-lg shadow-lg p-6 h-full text-center w-[110%] ml-[2px]">
+    <div className="bg-[rgb(199,225,249)] rounded-lg shadow-lg p-6 h-[100] text-center w-[100%] ml-[2px]">
       {/* Profile Avatar */}
       {/* <div className="relative flex justify-center mb-4"> */}
       {/* <div className="flex items-center justify-center">
@@ -22,17 +23,17 @@ const ProfileCard = ({ name, department, lateEntries, temporaryLeaves }) => {
       {/* </div> */}
 
 
-      <div className="ml-[340px] w-24 h-24 rounded-full overflow-hidden">
+      <div className="ml-[280px] w-40 h-40 rounded-full overflow-hidden">
             <a
               href="https://your-link-here.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
-                src="https://wallpapercave.com/wp/wp12969847.jpg"
-                alt="cover"
-                className="w-full h-full object-cover"
-              />
+             <img
+  src={user?.profilePicture || 'default-image.jpg'} // Add fallback image if profilePicture doesn't exist
+  alt="cover"
+  className="w-full h-full object-cover"
+/>
             </a>
           </div>
 
@@ -40,6 +41,8 @@ const ProfileCard = ({ name, department, lateEntries, temporaryLeaves }) => {
       {/* User Information */}
       <h1 className="text-2xl font-bold text-gray-700 mt-4">{name}</h1>
       <p className="text-sm text-gray-500">{department}</p>
+      <p className="text-sm text-gray-500">{id}</p>
+
 
       {/* Stats */}
       <div className="flex justify-between items-center mt-6 px-6">
@@ -64,7 +67,7 @@ const ProfileCard = ({ name, department, lateEntries, temporaryLeaves }) => {
       </div>
 
       {/* Show More Button */}
-      <button className="mt-6 px-4 py-2 text-white font-bold rounded-full bg-[rgb(51,55,74)] ">
+      <button className="mt--2 px-4 py-2 text-white font-bold rounded-full bg-[rgb(51,55,74)] ">
         Show More
       </button>
     </div>
