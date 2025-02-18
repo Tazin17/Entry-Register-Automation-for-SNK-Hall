@@ -1,5 +1,6 @@
 const Admin = require('../model/Admin');
 const User = require('../model/User')
+const Staff = require('../model/Staff')
 const response = require("../utils/responseHandler");
 
 //check if user is authenticated or not 
@@ -33,4 +34,33 @@ const getAllUser = async(req, res) => {
    }
 }
 
-module.exports= { checkUserAuth , getAllUser }
+const getUserCount = async (req, res) => {
+    try {
+        // Get the total number of users
+        const userCount = await User.countDocuments();
+
+        // Get the total number of staff
+        const staffCount = await Staff.countDocuments();
+
+        // Get the number of users whose status is true
+        const activeUserCount = await User.countDocuments({ status: true });
+
+        // Get the number of staff whose status is true
+        const activeStaffCount = await Staff.countDocuments({ status: true });
+
+        // Return the response with status 200 (OK)
+        return response(res, 200, 'Get user counts successfully', {
+            userCount,
+            staffCount,
+            activeUserCount,
+            activeStaffCount
+        });
+    } catch (error) {
+        // Log the error and return a 500 error message
+        console.log('Error fetching user counts:', error);
+        return response(res, 500, 'Internal server error', error.message);
+    }
+};
+
+
+module.exports= { checkUserAuth , getAllUser, getUserCount }

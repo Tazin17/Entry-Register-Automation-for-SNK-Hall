@@ -1,6 +1,8 @@
 import { Separator } from "@/components/ui/separator";
 import { Circle } from "lucide-react";
 const HomeCard = () => {
+
+  // const getUserDataCount 
   return (
     <div className=" flex flex-col top-1/2 transform-translate-y-1/2 bg-[#D8E0E4] items-center px-12 pb-12 rounded-md shadow-md m-4">
       <div className="font-bold text-3xl py-6 dark:text-black">Presence</div>

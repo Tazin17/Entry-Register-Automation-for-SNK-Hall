@@ -4,8 +4,10 @@ import { Button } from '@/components/ui/button';
 import { User, Users, BookUser, Send}  from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { useRouter } from "next/navigation";
+import userStore from '@/store/userStore';
 const ULeftSideBar = () => {
     const router = useRouter();
+    const {user, clearUser} = userStore();
       const handleNavigation = (path) => {
         router.push(path);
       };
@@ -17,9 +19,9 @@ const ULeftSideBar = () => {
                     <div className='flex items-center space-x-2 cursor-pointer'>
                         <Avatar className='h-10 w-10'>
                            <AvatarImage/>
-                            <AvatarFallback className="dark:bg-gray-600">S</AvatarFallback>
+                            <AvatarFallback className="dark:bg-gray-600">{user?.username}</AvatarFallback>
                         </Avatar>
-                        <span className='font-semibold'>Student</span>
+                        <span className='font-semibold'>{user?.username}</span>
                     </div>
                     
                     <Button

@@ -108,7 +108,7 @@ const loginUser = async(req,res) => {
             try{
                 const user = await User.findOne({id})
                 if( !user){
-                    return response(res,404,'User not found with this email')
+                    return response(res,404,'User not found with this ID')
                 }
                 if( password != user.password){
                     return response(res,404,'Invalid User Password')

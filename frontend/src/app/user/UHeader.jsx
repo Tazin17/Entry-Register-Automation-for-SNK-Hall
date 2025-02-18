@@ -23,10 +23,12 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React, { useState } from "react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
+import userStore from "../../store/userStore";
 // import PostForm from "@/app/notice-submission/PostForm";
 
 const Header = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const {user, clearUser} = userStore();
   const { theme, setTheme } = useTheme("dark");
 
   const router = useRouter();
@@ -104,7 +106,7 @@ const Header = () => {
                   {/* <div className='flex items-center space-x-2 cursor-pointer'> */}
                                         <Avatar className='h-10 w-10'>
                                            <AvatarImage/>
-                                            <AvatarFallback className="dark:bg-gray-600">S</AvatarFallback>
+                                            <AvatarFallback className="dark:bg-gray-600">{user?.username[0]}</AvatarFallback>
                                         </Avatar>
                                         {/* <span className='font-semibold'>Student</span> */}
                                     {/* </div> */}
@@ -118,15 +120,15 @@ const Header = () => {
                     <Avatar className="h-8 w-8 mr-2">
                       <AvatarImage />
                       <AvatarFallback className="dark:bg-gray-400">
-                        P
+                        {user?.username[0]}
                       </AvatarFallback>
                     </Avatar>
                     <div>
                       <p className="text-sm font-medium leading-none">
-                        Walisa Alam
+                        {user?.username}
                       </p>
                       <p className="text-xs mt-2 text-gray-medium leading-none">
-                        walisaalam810@gmail.com
+                        {user?.email}
                       </p>
                     </div>
                   </div>
