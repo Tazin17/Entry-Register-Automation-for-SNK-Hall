@@ -17,10 +17,30 @@ const Leave = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission (send data to server or perform necessary actions)
-    console.log(leaveDetails);
+
+    try {
+      const response = await fetch("http://localhost:8000/leave", { // Change if using a different backend port
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(leaveDetails),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert("Leave request submitted successfully!");
+        setLeaveDetails({ startDate: "", endDate: "", reason: "" });
+      } else {
+        alert("Error: " + data.error);
+      }
+    } catch (error) {
+      console.error("Error submitting leave request:", error);
+      alert("Failed to submit leave request. Please try again.");
+    }
   };
 
   return (
