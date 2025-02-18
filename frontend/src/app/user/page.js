@@ -6,6 +6,7 @@ import ULeftSideBar from "../user/ULeftSideBar";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Camera, PenLine, Save, Upload, X } from "lucide-react";
+import userStore from "@/store/userStore";
 
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 // import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ import { Camera, PenLine, Save, Upload, X } from "lucide-react";
 
 
 const page = () => {
+  const { user, clearUser } = userStore();
   return (
     <div className="flex flex-col min-h-screen bg-white text-black">
       {/* Header Component */}
@@ -51,17 +53,18 @@ const page = () => {
           </Avatar> 
           </div>   */}
 
-          <div className="ml-72 relative w-[1600px] h-64 md:h-80 bg-gray-300 overflow-hidden">
+          <div className="ml-60 relative w-[1200px] h-64 md:h-80 bg-gray-300 overflow-hidden">
             <a
               href="https://your-link-here.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
-                src="https://rare-gallery.com/uploads/posts/5328284-leaf-puddle-cobblestone-sidewalk-street-rainy-wet-urban-seasonal-fall-autumn-gloomy-dreary-cold-city-life-leafe-rain-raining-atmosphere-nostalgium-free-stock-photos.jpg"
-                alt="cover"
-                className="w-full h-full object-cover"
-              />
+             <img
+  src={user?.profilePicture || 'default-image.jpg'} // Add fallback image if profilePicture doesn't exist
+  alt="cover"
+  className="w-full h-full object-cover"
+/>
+
             </a>
 
             <Button
@@ -80,8 +83,9 @@ const page = () => {
           <div className=" absolute top-1/2 transform -translate-y-1/2  ml-40 flex justify-center items-center z-100 w-[50%] h-[55%]">
             {/* Profile Card */}
             <ProfileCard
-              name="Samatha Alam"
-              department="Dept of CSE [2004016]"
+              name={user?.username}
+              department={user?.department}
+              id={user?.id}
               lateEntries={10}
               temporaryLeaves={8}
             />

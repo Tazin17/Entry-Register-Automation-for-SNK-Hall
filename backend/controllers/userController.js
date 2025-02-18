@@ -32,5 +32,23 @@ const getAllUser = async(req, res) => {
        return response(res,500,'Internal server error',error.message)
    }
 }
+const getUserProfile = async(req, res) =>{
+    try {
+        const {userId} = req.params;
+        const loggedInUserId = req?.user?.userId
 
-module.exports= { checkUserAuth , getAllUser }
+        //fetch the user details and excude sensitive information
+        const userProfile = await User.findById(userId).select('-password').exec();
+
+        if(!userProfile) return response(res,403, 'User not found')
+
+        const isOwner = loggedInUserId === userId;
+
+        return response(res,201, 'user profile get successfully', {profile:userProfile,isOwner})
+     } catch (error) {
+        return response(res, 500, 'Internal server error', error.message)
+     }
+}
+
+
+module.exports= { checkUserAuth , getAllUser,getUserProfile }

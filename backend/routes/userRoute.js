@@ -1,6 +1,6 @@
 const express = require('express');
 const authMiddleware = require('../middleware/authMiddleware');
-const { checkUserAuth, getAllUser } = require('../controllers/userController');
+const { checkUserAuth, getAllUser,getUserProfile } = require('../controllers/userController');
 
 const router = express.Router();
 
@@ -9,5 +9,6 @@ router.get('/check-auth',authMiddleware,checkUserAuth)
 
 //get all user
 router.get('/user',authMiddleware,getAllUser)
+router.get('/profile/:userId',authMiddleware,getUserProfile)
 
 module.exports = router
